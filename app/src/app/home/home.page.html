@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Add Form </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registrationForm" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label positon="floating">Company Name</ion-label>
+        <ion-input
+          formControlName="company"
+          autocapitalize
+          inputmode="text"
+        ></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.company">
+        <ng-container
+          *ngIf="company.hasError(error.type)&&(company.dirty || company.touched)"
+        >
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label positon="floating">Meet With</ion-label>
+        <ion-input formControlName="meet_With" inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.meet_With">
+        <ng-container
+          *ngIf="meet_With.hasError(error.type)&&(meet_With.dirty || meet_With.touched)"
+        >
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label positon="floating">Mobile No.</ion-label>
+        <ion-input formControlName="mobile_no" inputmode="tel"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.mobile_no">
+        <ng-container
+          *ngIf="mobile_no.hasError(error.type)&&(mobile_no.dirty || mobile_no.touched)"
+        >
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label positon="floating">Email ID</ion-label>
+        <ion-input formControlName="email" inputmode="email"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.email">
+        <ng-container
+          *ngIf="email.hasError(error.type)&&(email.dirty || email.touched)"
+        >
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label positon="floating">Purpose</ion-label>
+        <ion-input formControlName="purpose" inputmode="text"></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.purpose">
+        <ng-container
+          *ngIf="purpose.hasError(error.type)&&(purpose.dirty || purpose.touched)"
+        >
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label positon="floating">Comments</ion-label>
+        <ion-input formControlName="comments" inputmode="text"></ion-input>
+      </ion-item>
+
+      <ion-item> Date and Time </ion-item>
+      <div class="ion-padding">
+        <ion-item>
+          <ion-datetime
+            displayFormat="MMM DD, YYYY  HH : mm "
+            [min]="minDate"
+            [max]="maxDate"
+          ></ion-datetime>
+        </ion-item>
+      </div>
+      <ion-item>
+        <ion-label positon="floating">Location </ion-label>
+        <ion-input
+          formControlName="location"
+          inputmode="text"
+        ></ion-input>
+      </ion-item>
+      <div *ngFor="let error of errorMessages.location">
+        <ng-container
+          *ngIf="location.hasError(error.type)&&(location.dirty || location.touched)"
+        >
+          <small class="error-message">{{error.message}}</small>
+        </ng-container>
+      </div>
+
+      <ion-button
+        [disabled]="!registrationForm.valid"
+        type="submit"
+        expand="block"
+      >
+        Save
+        <ion-icon slot="end" company="create"></ion-icon>
+      </ion-button>
+    </ion-list>
+  </form>
+</ion-content>
